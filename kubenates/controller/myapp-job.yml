@@ -1,0 +1,18 @@
+# 파이의 2000번째 소수점을 계산하는 작업을 수행하는 잡
+# 배포 후 파드 상태 확인
+# 시간이 지난 후 잡 완료 확인
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: myapp-job
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]
