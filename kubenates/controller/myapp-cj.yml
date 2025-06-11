@@ -1,0 +1,19 @@
+# 1분마다 30초 동안 실행되는 파드를 생성하는 잡을 실행하는 크론잡
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mypap-cj
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec: 
+      template:
+        metadata:
+          labels:
+            app: myapp-job
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: sleep
+              image: busybox
+              command: ["sleep", "30"]
