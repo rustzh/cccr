@@ -1,0 +1,19 @@
+# 작업을 여러 번, 병렬로 처리하는 잡
+# watch -n1 kubectl get pod,job 으로 잡 완료 과정 확인
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: myapp-job-para
+spec:
+  completions: 3
+  parallelism: 3
+  template:
+    metadata:
+      labels:
+        app: myapp-job-para
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: pi
+          image: perl
+          command: ["perl", "-Mbignum=bpi", "-wle", "print bpi(2000)"]
