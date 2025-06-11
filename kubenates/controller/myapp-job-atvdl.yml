@@ -1,4 +1,4 @@
-# 
+# 배포 후 바로 확인해보기
 ---
 apiVersion: batch/v1
 kind: Job
@@ -6,12 +6,13 @@ metadata:
   name: myapp-job-atvdl
 spec:
   backoffLimit: 3            # 잡 오류 시 3번까지 재시도 -> 3번 실패하면 잡을 실패로 종료
-  activeDeadlineSeconds: 3   # 잡 작동 시간을 설정 -> 3초 동안 완료되지 않으면 잡을 실패로 종료
+  activeDeadlineSeconds: 5   # 잡 작동 시간을 설정 -> 5초 동안 완료되지 않으면 잡을 실패로 종료
   template:
     metadata:
       labels:
         app: myapp-job-atvdl
     spec:
+      restartPolicy: OnFailure
       containers:
         - name: pi
           image: perl
