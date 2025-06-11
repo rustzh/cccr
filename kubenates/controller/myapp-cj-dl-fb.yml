@@ -1,0 +1,22 @@
+# concurrencyPollicy: Forbid (동시 실행 금지)
+# 이미 실행 중인 잡이 있는 경우에는 다른 잡이 실행되지 않고 100초(startingDeadlineSeconds)간 대기한다.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: myapp-cj-dl-fb
+spec:
+  schedule: "* * * * *"
+  startingDeadlineSeconds: 10
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec: 
+      template:
+        metadata:
+          labels:
+            app: myapp-cj-dl-fb
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: sleep
+              image: busybox
+              command: ["sleep", "65"]
