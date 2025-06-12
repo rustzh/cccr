@@ -1,0 +1,15 @@
+# 서비스 배포 후 app: myapp-rs를 가진 파드를 생성하면 엔드포인트가 등록된다.
+# kubectl run nettool -it --image ghcr.io/nobreak-labs/network-multitool --rm bash
+# curl <파드 엔드포인트> / curl <서비스 이름> / curl <서비스 ClusterIP>
+# 이 명령어로 접근 확인. 서비스 이름이나 ClusterIP로 접근하면 라운드 로빈 로드밸런싱이 된다.
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-svc
+spec:
+  type: ClusterIP
+  selector:
+    app: myapp-rs
+  ports:
+    - port: 80
+      targetPort: 8080
