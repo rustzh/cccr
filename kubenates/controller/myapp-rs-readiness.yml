@@ -1,0 +1,26 @@
+# service/myapp-svc-readiness.yml와 함께 배포
+# ReadinessProbe 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-readiness
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp-rs-readiness
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-readiness
+      spec:
+        containers:
+          - name: myapp
+            image: ghcr.io/nobreak-labs/go-myweb:alpine
+            readinessProbe:
+              exec:
+                command:
+                  - ls
+                  - /var/ready
+            ports:
+              - containerPort: 8080
