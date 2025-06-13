@@ -1,4 +1,4 @@
-# 인그레스와 함께 사용
+# myapp-svc-np.yml과 함께 사용
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
