@@ -26,6 +26,8 @@
 
      service/myapp-svc.yml, service/myapp-svc-np.yml service/myapp-svc-lb.yml 서비스 배포
 
+     cnotroller/myapp-rs.yml, controller/myapp-rs-np.yml, controller/myapp-rs-lb.yml 레플리카셋 배포
+
      ```
      kubectl describe ing myapp-ing-mpath
      ```
@@ -34,7 +36,8 @@
      curl myapp.example.com/web2
      curl myapp.example.com/web3
      ```
-4. **다른 FQDN 다중 호스트 인그레스 (myapp-ing-multi-hosts.yml)**
+     myapp-ing-mpath 인그레스 삭제
+5. **다른 FQDN 다중 호스트 인그레스 (myapp-ing-multi-hosts.yml)**
 
    myapp-ing-multi-hosts.yml 인그레스 배포
    
@@ -47,4 +50,4 @@
    curl nginx.example.com
    curl myapp.example.com
    ```
-   
+   모든 리소스 삭제
