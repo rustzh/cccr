@@ -7,8 +7,7 @@
    
      controller/myapp-rs-np.yml 배포
      
-     
-     조금 기다렸다가 kubectl get으로 확인 -> ADDRESS 생성 확인
+     파드, 서비스, 엔드포인트, 인그레스 정보 확인
      
      ```
      curl --resolve myapp.example.com:80:192.168.56.21 http://myapp.example.com
@@ -17,7 +16,10 @@
      /etc/hosts 파일의 각 노드들 뒤에 myapp.example.com 추가
      ```
      curl myapp.example.com
+     curl <파드 IP 주소>:8080
+     curl myapp-svc-np
      ```
+     모든 리소스 삭제
 3. **같은 FQDN 다중 경로 인그레스 (myapp-ing-multi-paths.yml)**
    
      myapp-ing-multi-paths 인그레스 배포
