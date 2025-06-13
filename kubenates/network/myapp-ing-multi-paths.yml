@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ing-mpath
+spec:
+  defaultBackend:
+    service:
+      name: myapp-svc-np
+      port:
+        number: 80
+  rules:
+    - host: myapp.example.com
+      http:
+        paths:
+          - path: /web1
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-svc-np
+                port:
+                  number: 80
+          - path: /web2
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-svc
+                port:
+                  number: 80
+          - path: /web3
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-svc-lb
+                port:
+                  number: 80
