@@ -24,7 +24,7 @@
    
      myapp-ing-multi-paths 인그레스 배포
 
-     service/myapp-svc.yml, service/myapp-svc-lb.yml 서비스 배포
+     service/myapp-svc.yml, service/myapp-svc-np.yml service/myapp-svc-lb.yml 서비스 배포
 
      ```
      kubectl describe ing myapp-ing-mpath
