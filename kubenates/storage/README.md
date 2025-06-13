@@ -17,3 +17,4 @@
    ```
    kubectl exec <파드 이름> -c web-server -- cat /usr/share/nginx/html/index.html
    ```
+   지정된 이미지의 index.html은 3초마다 변경되기 때문에 3초 안에 두 명령어를 모두 사용해서 같은 내용이 뜨는지 확인해보자!
