@@ -1,0 +1,32 @@
+# 다른 FQDN 다중 호스트 인그레스
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp-ing-mhost
+spec:
+  defaultBackend:
+    service:
+      name: myapp-svc-np
+      port:
+        number: 80
+  rules:
+    - host: myapp.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-svc-np
+                port:
+                  number: 80
+    - host: nginx.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp-svc-nginx
+                port:
+                  number: 80
