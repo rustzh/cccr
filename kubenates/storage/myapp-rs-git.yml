@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp-rs-fortune
+      app: myapp-rs-git
   template:
     metadata:
       labels:
-        app: myapp-rs-fortune
+        app: myapp-rs-git
     spec:
       initContainers:
         - name: git-clone
