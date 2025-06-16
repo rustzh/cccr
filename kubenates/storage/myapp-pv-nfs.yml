@@ -1,0 +1,13 @@
+apiVersion:
+kind: PersistentVolume
+metadata:
+  name: myapp-pv-nfs
+spec:
+  capacity:
+    storage: 1Gi
+  accessMode:
+    - ReadWriteMany
+  PersistentVolumeReclaimPolicy: Retain
+  nfs:
+    path: /srv/nfs-volume
+    server: 192.168.56.11
