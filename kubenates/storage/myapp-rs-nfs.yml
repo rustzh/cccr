@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: myapp-rs-nfs
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: myapp-rs-nfs
+  template:
+    metadata:
+      labels:
+        app: myapp-rs-nfs
+    spec:
+      containers:
+        - name: myapp
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web-content
+          nfs:
+            server: 192.168.56.11
+            path: /srv/nfs-volume
