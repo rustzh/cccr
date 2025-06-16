@@ -70,6 +70,8 @@
    ```
    /srv/nfs-volume/index.html 파일 작성
 
+   모든 노드에 nfs-common 패키지 설치
+
    myapp-rs-nfs.yml 배포
 
    myapp-svc-nfs 배포
