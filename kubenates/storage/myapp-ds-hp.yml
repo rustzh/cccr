@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: myapp-ds-hp
+spec:
+  selector:
+    matchLabels:
+      app: myapp-ds-hp
+  template:
+    metadata:
+      labels:
+        app: myapp-ds-hp
+    spec:
+      containers:
+        - name: myapp
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: web-content
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: web-content
+          hostPath:
+            type: Directory
+            path: /srv/web-content
