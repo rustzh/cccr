@@ -36,5 +36,19 @@
    myapp--svc-git.yml 서비스 배포
 
    external IP로 접속해보기
-
    
+3. **hostPath 볼륨**
+
+   1번 노드 /srv/web-content/index.html 파일 생성
+
+   2번 노드 /srv/web-content 디렉토리만 생성
+
+   3번 노드 아무것도 생성하지 않음
+
+   myapp-ds-hp.yml 데몬셋 배포
+
+   데몬셋 확인 / 파드 -o wide 옵션으로 확인
+  
+   myapp-rs-hp.yml 레플리카셋 생성
+
+   레플리카셋 확이 / 파드 확인
