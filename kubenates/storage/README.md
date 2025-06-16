@@ -51,4 +51,28 @@
   
    myapp-rs-hp.yml 레플리카셋 생성
 
-   레플리카셋 확이 / 파드 확인
+   레플리카셋 확인 / 파드 확인
+
+   3번 노드에 /srv/web-content 디렉토리 생성
+
+   파드 다시 확인
+
+4. **NFS 볼륨**
+
+   NFS 서버 구성
+   ```
+   $ sudo apt update
+   $ sudo apt install -y nfs-kernel-server
+   $ sudo mkdir /srv/nfs-volume
+   $ vi /etc/exports
+   /srv/nfs-volume *(rw,sync,no_root_squash,no_subtree_check)
+   $ sudo exportfs -r
+   ```
+   /srv/nfs-volume/index.html 파일 작성
+
+   myapp-rs-nfs.yml 배포
+
+   myapp-svc-nfs 배포
+
+   
+   
