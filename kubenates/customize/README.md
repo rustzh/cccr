@@ -4,3 +4,10 @@
 
 3. **컨피그맵**
    
+   myapp-pod-cm.yml 파드 배포
+
+   파드 상태 확인 (에러)
+
+   myapp-cm-message.yml 컨피그맵 배포
+
+   파드 상태 확인
