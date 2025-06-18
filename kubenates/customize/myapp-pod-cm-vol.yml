@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: myapp-pod-cm-vol
+spec: 
+  containers:
+    - name: my
+      image: ghcr.io/nobreak-labs/go-myweb:alpine
+      ports:
+        - containerPort: 8080
+          protocol: TCP
+      volumeMounts:
+        - name: cm-vol
+          mountPath: /mnt
+  volumes:
+    - name: cm-vol
+      configMap:
+        name: my-config1
