@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp-deploy
+  template:
+    metadata:
+      labels:
+        app: myapp-deploy
+    spec:
+      containers:
+        - name: myapp
+          image: ghcr.io/nobreak-labs/go-myweb:alpine
+          ports:
+            - containerPort: 8080
