@@ -5,7 +5,7 @@ metadata:
   labels:
     app: myapp-deploy
   annotations:
-    kubernetes.io/change-cause: My Golang Web App Version 3
+    kubernetes.io/change-cause: My Web App Version 3
 spec:
   strategy:
     type: RollingUpdate
@@ -27,8 +27,3 @@ spec:
           name: myapp
           ports:
             - containerPort: 8080
-          readinessProbe:
-            periodSeconds: 1
-            httpGet:
-              path: /
-              port: 8080
