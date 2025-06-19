@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: myapp-deploy
-  annotations:
-    kubernetes.io/change-cause: My Web App Version 1
+  labels:
+    app: myapp-deploy
 spec:
   strategy:
     type: RollingUpdate
