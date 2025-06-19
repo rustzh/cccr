@@ -17,18 +17,18 @@ spec:
   selector:
     matchLabels:
       app: myapp-deploy
-    template:
-      metadata:
-        labels:
-          app: myapp-deploy
-      spec:
-        containers:
-          - image: ghcr.io/nobreak-labs/go-myweb:v3.0
-            name: myapp
-            ports:
-              - containerPort: 8080
-            readinessProbe:
-              periodSeconds: 1
-              httpGet:
-                path: /
-                port: 8080
+  template:
+    metadata:
+      labels:
+        app: myapp-deploy
+    spec:
+      containers:
+        - image: ghcr.io/nobreak-labs/go-myweb:v3.0
+          name: myapp
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            periodSeconds: 1
+            httpGet:
+              path: /
+              port: 8080
