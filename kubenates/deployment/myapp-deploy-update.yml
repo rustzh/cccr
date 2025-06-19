@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deploy
+  annotations:
+    kubernetes.io/change-cause: My Web App Version 1
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  minReadySeconds: 20
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp-deploy
+  template:
+    metadata:
+      labels:
+        app: myapp-deploy
+    spec:
+      containers:
+        - name: myapp
+          image: ghcr.io/nobreak-labs/go-myweb:v1.0
+          ports:
+            - containerPort: 8080
