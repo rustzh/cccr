@@ -125,4 +125,66 @@
    ```
    curl <서비스 Cluster IP>
    curl <파드 IP 주소>
-   ```  
+   ```
+
+8. 리소스 모두 삭제
+   ```
+   kubectl delete all --all
+   ```
+
+**(2) 디플로이먼트의 롤링 업데이트 - 명령어**
+
+1. myapp-deploy-v1.yml 디플로이먼트 record 옵션과 함께 배포 - 변경 사항 기록
+   ```
+   kubectl create -f myapp-deploy-v1.yml --record
+   ```
+
+2. 디플로이먼트 변경 기록 확인
+   ```
+   kubectl rollout history deployment myapp-deploy
+   ```
+   
+2. 디플로이먼트 이미지 변경 (v1.0 -> v2.0)
+   ```
+   kubectl set image deployments myapp-deploy myapp=ghcr.io/nobreak-labs/go-myweb:v2.0 --record
+   ```
+   
+3. 디플로이먼트 롤링 업데이트 상태 확인
+   ```
+   kubectl rollout status deployment myapp-deploy
+   ```
+
+4. 변경 기록 재확인 
+   ```
+   kubectl rollout history deployment myapp-deploy
+   ```
+   
+**(3) 디플로이먼트의 롤링 업데이트 - YAML 파일**
+
+1. myapp-deploy를 myapp-deploy-v3.yml 파일로 replace
+   ```
+   kubectl replace myapp-deploy-v1.yml -f myapp-deploy-v3.yml
+   ```
+   
+4. 변경 기록 재확인 
+   ```
+   kubectl rollout history deployment myapp-deploy
+   ```
+
+**(4) 디플로이먼트의 롤백**
+
+1. 레플리카셋 확인
+   ```
+   kubectl get rs
+   ```
+
+2. REVISION 2로 롤백
+   ```
+   kubectl rollout undo deployment myapp-deploy --to-revision=2
+   ```
+
+3. 레플리카셋, 변경 기록 재확인
+   ```
+   kubectl get rs
+   kubectl rollout history deployment myapp-deploy
+   ```
