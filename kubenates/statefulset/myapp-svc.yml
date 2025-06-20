@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: myapp-svc
+  name: myapp-svc-headless # 스테이트풀셋에서 serviceName에 설정한 그대로 작성
 spec:
   type: ClusterIP
 #  clusterIP: None
