@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: myapp-sts-empty
+spec:
+  replicas: 3
+  serviceName: myapp-svc-empty
+  selector:
+    matchLabels:
+      app: myapp-sts-empty
+  template:
+    metadata:
+      labels:
+        app: myapp-sts-empty
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command:
+            - sleep
+            - infinity
+          volumeMounts:
+            - name: git-repository
+              mountPath: /mnt
+      initContainers:
+        - name: git
+          image: alpine/git
+          args:
+            - clone
+            - https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner.git
+            - /repo
+          volumeMounts:
+            - name: git-repository
+              mountPath: /repo
+      volumes:
+        - name: git-repository
+          emptyDir: {}
